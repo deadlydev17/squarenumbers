@@ -1,0 +1,18 @@
+[
+  {
+    "directory": "/data/data/com.termux/files/home/cpp-tutorial/miniproject/blackjack/",
+    "arguments": [
+      "g++",
+      "-Wall",
+      "-Weffc++",
+      "-Wextra ",
+      "-std=c++2a",
+      "-Wsign-conversion",
+      "-Werror",
+      "*.cpp",
+      "-o",
+      "main"
+    ],
+    "file": "main.cpp"
+  }
+]
