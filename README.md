@@ -1,1 +1,1 @@
-# squarenumbers
+# square numbers game
