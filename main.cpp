@@ -1,8 +1,9 @@
 #include <algorithm>
 #include <iostream>
+#include <iterator>
 #include <limits> //import std::numeric_limits
-#include <random>
-#include <vector>
+#include <random> // std::mt19937, std::seed_seq, std::random_device, std::uniform_int_distribution
+#include <vector> // import std::vector and std::vector::size_type
 
 
 // config for generate random number
@@ -55,20 +56,36 @@ namespace Random {
   }
 }
 
-std::vector<int> listNum(int baseNumber,int amountOfNumbers) {
-  std::vector<int> temp{};
-  temp.resize(amountOfNumbers);
-  std::vector<int>::size_type total{};
-  for(auto& number:temp){
-    total = number * baseNumber * Random::getRandomNumber(Config::minNumber, Config::maxNumber);
+using list_num = std::vector<int>;
+using index_type = list_num::size_type;
+
+list_num getListNum(int baseNumber,int amountOfNumbers, int randomNumber) {
+  list_num listNums{};
+  listNums.resize(static_cast<index_type>(amountOfNumbers));
+  index_type lenght{static_cast<index_type>(std::size(listNums))};
+  for(index_type count{};count < lenght;++count) {
+    listNums[count] = (baseNumber) * (baseNumber) * randomNumber;
+    ++baseNumber;
   }
-  return temp;
+  return listNums;
+}
+
+bool playGame() {
+
 }
 
 int main() {
 
   auto baseNumber{getBaseSquareNumber()};
   auto amountOfNumbers{getNumberToGenerate()};
+  auto randomNumber{getNumberToGenerate()};
+
+  auto get{getListNum(baseNumber, amountOfNumbers,randomNumber)};
+
+  for(const auto& i:get) {
+    std::cout << i << ' ';
+  }
+  std::cout << '\n';
 
   return 0;
 }
